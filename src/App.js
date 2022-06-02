@@ -22,34 +22,39 @@ export default function App() {
     return Array.from(new Set(b));
   };
 
-  const handleClick=x=>{
-    setsem(x.sem)
-    setstream(x.stream)
-    setpassingyear(x.passingyear)
-  }
+  const handleClick = (x) => {
+    setsem(x.sem);
+    setstream(x.stream);
+    setpassingyear(x.passingyear);
+  };
 
   return (
-    <div className="flex">
-      <div>
-        {a.map((x) => (
-          <li onClick={()=>handleClick(x)}>{x.name}</li>
-        ))}
+    <>
+      <h1>dragoverme</h1>
+      <div className="flex">
+        <div>
+          {a.map((x) => (
+            <li draggable={true} onDragStart={() => handleClick(x)}>
+              {x.name}
+            </li>
+          ))}
+        </div>
+        <div>
+          {unique('sem').map((x) => (
+            <li className={x === sem ? 'active' : ''}>{x}</li>
+          ))}
+        </div>
+        <div>
+          {unique('stream').map((x) => (
+            <li className={x === stream ? 'active' : ''}>{x}</li>
+          ))}
+        </div>
+        <div>
+          {unique('passingyear').map((x) => (
+            <li className={x === passingyear ? 'active' : ''}>{x}</li>
+          ))}
+        </div>
       </div>
-      <div>
-        {unique('sem').map((x) => (
-          <li className={x === sem ? 'active' : ''}>{x}</li>
-        ))}
-      </div>
-      <div>
-        {unique('stream').map((x) => (
-          <li className={x === stream ? 'active' : ''}>{x}</li>
-        ))}
-      </div>
-      <div>
-        {unique('passingyear').map((x) => (
-          <li className={x === passingyear ? 'active' : ''}>{x}</li>
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
