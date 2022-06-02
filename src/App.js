@@ -6,7 +6,12 @@ export default function App() {
   //semeter wala
   //html css wala
   //date y,m,d
-  //no of days-done
+  let d = new Date();
+  d = d.toJSON();
+  d = d.slice(0, 10);
+  d = d.split('-');
+  let a = [+d[0], +d[1], +d[2]];
+  console.log(a);
   return (
     <div>
       <h1>Hello StackBlitz!</h1>
