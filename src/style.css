@@ -1,4 +1,18 @@
 .active {
-  background-color: red;
-  color: white;
+  border: 2px solid red;
+}
+
+li {
+  border: 2px solid silver;
+}
+
+.flex {
+  display: flex;
+  gap: 30px;
+}
+
+li {
+  list-style: none;
+  padding: 5px;
+  margin-bottom: 3px;
 }

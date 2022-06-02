@@ -2,25 +2,54 @@ import React from 'react';
 import './style.css';
 
 export default function App() {
-  const [z, setz] = React.useState('');
-  // student
-  //semeter wala
-  //html css wala
+  const [sem, setsem] = React.useState('');
+  const [stream, setstream] = React.useState('');
+  const [passingyear, setpassingyear] = React.useState('');
+
   let a = [
-    { name: 'html', label: 'tag,h1,h2,p' },
-    { name: 'css', label: 'id,class,media query' },
-    { name: 'javascript', label: 'string,arrays' },
+    { id: 1, name: 'demo1', sem: '1st', stream: 'it', passingyear: 2020 },
+    { id: 2, name: 'demo2', sem: '2nd', stream: 'cse', passingyear: 2020 },
+    { id: 3, name: 'demo3', sem: '2nd', stream: 'it', passingyear: 2020 },
+    { id: 4, name: 'demo4', sem: '2nd', stream: 'it', passingyear: 2021 },
+    { id: 5, name: 'demo5', sem: '2nd', stream: 'it', passingyear: 2021 },
+    { id: 6, name: 'demo6', sem: '2nd', stream: 'cse', passingyear: 2022 },
+    { id: 7, name: 'demo7', sem: '3rd', stream: 'cse', passingyear: 1990 },
+    { id: 8, name: 'demo8', sem: '3rd', stream: 'me', passingyear: 2022 },
   ];
 
-  return (
-    <div>
-      {a.map((x) => (
-        <h1 onClick={() => setz(x.name)}>{x.name}</h1>
-      ))}
+  const unique = (key) => {
+    let b = a.map((x) => x[key]);
+    return Array.from(new Set(b));
+  };
 
-      {a.map((x) => (
-        <h1 className={x.name === z ? 'active' : ''}>{x.label}</h1>
-      ))}
+  const handleClick=x=>{
+    setsem(x.sem)
+    setstream(x.stream)
+    setpassingyear(x.passingyear)
+  }
+
+  return (
+    <div className="flex">
+      <div>
+        {a.map((x) => (
+          <li onClick={()=>handleClick(x)}>{x.name}</li>
+        ))}
+      </div>
+      <div>
+        {unique('sem').map((x) => (
+          <li className={x === sem ? 'active' : ''}>{x}</li>
+        ))}
+      </div>
+      <div>
+        {unique('stream').map((x) => (
+          <li className={x === stream ? 'active' : ''}>{x}</li>
+        ))}
+      </div>
+      <div>
+        {unique('passingyear').map((x) => (
+          <li className={x === passingyear ? 'active' : ''}>{x}</li>
+        ))}
+      </div>
     </div>
   );
 }
