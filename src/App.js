@@ -2,20 +2,25 @@ import React from 'react';
 import './style.css';
 
 export default function App() {
+  const [z, setz] = React.useState('');
   // student
   //semeter wala
   //html css wala
-  //date y,m,d
-  let d = new Date();
-  d = d.toJSON();
-  d = d.slice(0, 10);
-  d = d.split('-');
-  let a = [+d[0], +d[1], +d[2]];
-  console.log(a);
+  let a = [
+    { name: 'html', label: 'tag,h1,h2,p' },
+    { name: 'css', label: 'id,class,media query' },
+    { name: 'javascript', label: 'string,arrays' },
+  ];
+
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
+      {a.map((x) => (
+        <h1 onClick={() => setz(x.name)}>{x.name}</h1>
+      ))}
+
+      {a.map((x) => (
+        <h1 className={x.name === z ? 'active' : ''}>{x.label}</h1>
+      ))}
     </div>
   );
 }
